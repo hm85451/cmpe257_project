@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Homepage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to BitSmart!</h1>
+        <h2>Your current asset is:</h2>
+        <p>bitcoin:</p>
+        <p>cash:</p>
+    </div>
+
+    <div class="container">
+        <h1>Swing trade history</h1>
+    </div>
+
+    <div class="container">
+        <h1>Model prediction</h1>
+        <form action="/process_date" method="post">
+            <label for="selected_date">Select a Date:</label>
+            <input type="date" id="selected_date" name="selected_date">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>
