@@ -4,12 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flask Homepage</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/styles.css') }}">
+
+    <script type="text/javascript">
+      function do_submit() {
+        var req = new XMLHttpRequest();
+        var result = document.getElementById('result');
+        req.onreadystatechange = function()
+        {
+          if(this.readyState == 4 && this.status == 200) {
+            result.innerHTML = this.responseText;
+          } else {
+            result.innerHTML = "waiting...";
+          }
+        }
+
+        req.open('POST', '/', true);
+        req.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+        req.send("date=" + document.getElementById('date').value);
+      }
+    </script>
+
 </head>
 <body>
     <div class="container">
         <h1>Welcome to BitSmart!</h1>
-        <h2>Your current asset is:</h2>
+        <h2>net asset: </h2>
         <p>bitcoin:</p>
         <p>cash:</p>
     </div>
@@ -20,11 +40,12 @@
 
     <div class="container">
         <h1>Model prediction</h1>
-        <form action="/process_date" method="post">
-            <label for="selected_date">Select a Date:</label>
-            <input type="date" id="selected_date" name="selected_date">
-            <button type="submit">Submit</button>
-        </form>
+        <form>
+        <label for="date">Select a Date:</label>
+        <input type="date" id="date" name="date">
+      <button type="button" id="btn-post" onclick="do_submit();">Click</button>
+      <div id="result"></div>
+    </form>
     </div>
 
 </body>
