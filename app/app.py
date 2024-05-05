@@ -1,9 +1,5 @@
 
 from flask import Flask, request, jsonify, render_template
-# import pandas as pd
-# import numpy as np
-# import tensorflow as tf
-# import keras
 import logging
 from utility import convert_date_to_n
 from model import predict
@@ -25,5 +21,5 @@ def index():
 
 
 if __name__ == '__main__':
-       app.run()
+       app.run(debug=False, host='0,0,0,0')
 
