@@ -31,19 +31,19 @@ def predict(date_count):
 
 
 
-# # Load the dataset
-# data = pd.read_csv('BTC-USD.csv')
+# Load the dataset
+data = pd.read_csv('data/BTC-USD.csv')
 
-# # Select relevant features
-# features = ['Open', 'High', 'Low', 'Close','Volume']
-# data = data[features]
+# Select relevant features
+features = ['Open', 'High', 'Low', 'Close','Volume']
+data = data[features]
 
-# # Preprocess the data
-# scaler = MinMaxScaler(feature_range=(0, 1))
-# scaled_data = scaler.fit_transform(data)
+# Preprocess the data
+scaler = MinMaxScaler(feature_range=(0, 1))
+scaled_data = scaler.fit_transform(data)
 
-# seq_length = 60
-# input_sequence = create_sequences(scaled_data, seq_length)
+seq_length = 60
+input_sequence = create_sequences(scaled_data, seq_length)
 
-# np.save("inputSequence.npy", input_sequence)
-# joblib.dump(scaler, 'scaler.pkl')
+np.save("inputSequence.npy", input_sequence)
+joblib.dump(scaler, 'scaler.pkl')
