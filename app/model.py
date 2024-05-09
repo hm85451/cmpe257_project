@@ -26,7 +26,7 @@ def predict(date_count):
     pred = model.predict(x.reshape((1,seq_length,len(features))))
     pred = scaler.inverse_transform(pred)
 
-    return np.array2string(pred)
+    return pred.tolist()
 
 
 

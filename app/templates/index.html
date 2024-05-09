@@ -13,7 +13,19 @@
         req.onreadystatechange = function()
         {
           if(this.readyState == 4 && this.status == 200) {
-            result.innerHTML = this.responseText;
+            var res = this.responseText
+            res = res.replace(/\.0\]/g, "]");
+            var dataArray = JSON.parse(res);
+            dataArray = dataArray[0]
+            var outputRow = document.getElementById('output-row');
+
+            dataArray.forEach(function(item, index) {
+
+              outputRow.cells[index].textContent = item
+
+            });
+
+            result.innerHTML = "";
           } else {
             result.innerHTML = "waiting...";
           }
@@ -29,23 +41,39 @@
 <body>
     <div class="container">
         <h1>Welcome to BitSmart!</h1>
-        <h2>net asset: </h2>
-        <p>bitcoin:</p>
-        <p>cash:</p>
+        <form>
+        <label for="date">Model inut date:</label>
+        <input type="date" id="date" name="date">
+      <button type="button" id="btn-post" onclick="do_submit();">predict!</button>
+    </form>
     </div>
-
-    <div class="container">
-        <h1>Swing trade history</h1>
-    </div>
-
     <div class="container">
         <h1>Model prediction</h1>
-        <form>
-        <label for="date">Select a Date:</label>
-        <input type="date" id="date" name="date">
-      <button type="button" id="btn-post" onclick="do_submit();">Click</button>
-      <div id="result"></div>
-    </form>
+        <div id="result"></div>
+        <table id="data-table" class="data-table">
+        <thead>
+            <tr>
+                <th class="data-table-th">output1</th>
+                <th class="data-table-th">output2</th>
+                <th class="data-table-th">output3</th>
+                <th class="data-table-th">output4</th>
+                <th class="data-table-th">output5</th>
+            </tr>
+        </thead>
+        <tbody id="data-body">
+            <tr id="output-row">
+                <td class="data-table-td">-</td>
+                <td class="data-table-td">-</td>
+                <td class="data-table-td">-</td>
+                <td class="data-table-td">-</td>
+                <td class="data-table-td">-</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <div class="container">
+        <h1>Swing trade strategy</h1>
     </div>
 
 </body>
