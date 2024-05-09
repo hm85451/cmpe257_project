@@ -19,9 +19,9 @@ def predict(date_count):
     input_sequence = np.load("inputSequence.npy")
     scaler = joblib.load('scaler.pkl')
     
-    model = tf.keras.models.load_model('btc_usd_lstm.h5')
+    model = tf.keras.models.load_model('model/tf2.9/btc_usd_lstm.h5')
     
-    input_date = date_count - 60 #not sure how much to offset by
+    input_date = date_count - 60
     x = input_sequence[input_date]
     pred = model.predict(x.reshape((1,seq_length,len(features))))
     pred = scaler.inverse_transform(pred)
