@@ -21,7 +21,7 @@ def index():
               # if the buy_day or sell_day is -1 then it will return NA
               buy_day, sell_day = trading_strategy(pred)
               if buy_day == -1:
-                     date = "NA"
+                     buy_date = "NA"
               else:
                      buy_date = date + timedelta(days=buy_day)
               if sell_day == -1:
