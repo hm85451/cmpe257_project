@@ -13,6 +13,6 @@ def convert_date_to_n(date):
 
     # Extract the number of days from the timedelta object and add 1
     # Adding 1 to include both the start and end dates in the count
-    num_dates = delta.days + 1
+    num_dates = delta.days
 
     return num_dates

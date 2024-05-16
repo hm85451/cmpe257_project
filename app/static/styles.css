@@ -42,7 +42,7 @@ input[type="date"] {
 
 .data-table-th,
 .data-table-td {
-    border: 1px solid black;
+    border: 1px solid black; /* Add top border */
     padding: 8px;
     text-align: left;
 }

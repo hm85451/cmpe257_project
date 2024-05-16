@@ -13,17 +13,31 @@
         req.onreadystatechange = function()
         {
           if(this.readyState == 4 && this.status == 200) {
-            var res = this.responseText
-            res = res.replace(/\.0\]/g, "]");
-            var dataArray = JSON.parse(res);
-            dataArray = dataArray[0]
-            var outputRow = document.getElementById('output-row');
+            var pred_list = JSON.parse(req.responseText);
 
-            dataArray.forEach(function(item, index) {
+            var table = document.getElementById('data-table');
 
-              outputRow.cells[index].textContent = item
+            pred_list.forEach(function(pred, index) {
+              var newRow = table.insertRow();
 
+              pred.forEach(function(entry, index) {
+                  var newCell = newRow.insertCell();
+                  newCell.classList.add('data-table-th');
+                  newCell.textContent = entry;
+              });
+              console.log(pred);
             });
+
+            //res = res.replace(/\.0\]/g, "]");
+            //var dataArray = JSON.parse(res);
+            //dataArray = dataArray[0]
+            //var outputRow = document.getElementById('output-row');
+
+            //dataArray.forEach(function(item, index) {
+
+              //outputRow.cells[index].textContent = item
+
+            //});
 
             result.innerHTML = "";
           } else {
@@ -53,21 +67,14 @@
         <table id="data-table" class="data-table">
         <thead>
             <tr>
-                <th class="data-table-th">output1</th>
-                <th class="data-table-th">output2</th>
-                <th class="data-table-th">output3</th>
-                <th class="data-table-th">output4</th>
-                <th class="data-table-th">output5</th>
+                <th class="data-table-th">Open</th>
+                <th class="data-table-th">High</th>
+                <th class="data-table-th">Low</th>
+                <th class="data-table-th">Close</th>
+                <th class="data-table-th">Volume</th>
             </tr>
         </thead>
         <tbody id="data-body">
-            <tr id="output-row">
-                <td class="data-table-td">-</td>
-                <td class="data-table-td">-</td>
-                <td class="data-table-td">-</td>
-                <td class="data-table-td">-</td>
-                <td class="data-table-td">-</td>
-            </tr>
         </tbody>
     </table>
     </div>
