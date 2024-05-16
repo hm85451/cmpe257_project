@@ -27,16 +27,18 @@ def trading_strategy(price):
     max_ind = price.index(max(price))
 
    # If the price goes up and then down, buy on the low day and sell on the high day
-    if min_ind < max_ind:
+    if max_ind < min_ind:
         buy_day = min_ind
         sell_day = max_ind
 
     # If the price goes all the way down, sell on the high day
-    elif max_ind < min_ind and min_ind == len(price) - 1:
+    elif max_ind < min_ind and min_ind == len(price) - 1 and max_ind == 0:
         sell_day = max_ind
 
     # If the price goes all the way up, sell on the high day and don't buy
-    elif max_ind < min_ind and max_ind == len(price) - 1:
+    elif max_ind > min_ind and max_ind == len(price) - 1 and min_ind == 0:
         sell_day = max_ind
+        
+    
 
     return [buy_day, sell_day]

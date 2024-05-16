@@ -14,7 +14,19 @@
         req.onreadystatechange = function()
         {
           if(this.readyState == 4 && this.status == 200) {
-            var pred_list = JSON.parse(req.responseText);
+            var list = JSON.parse(req.responseText);
+            var pred_list = list['pred_list'];
+            var buy_date = list['buy_date'];
+            var sell_date = list['sell_date'];
+
+            document.getElementById('buy_date').innerText = buy_date;
+            document.getElementById('sell_date').innerText = sell_date;
+
+            var buy = document.getElementById('buy_date');
+            var sell = document.getElementById('sell_date');
+
+
+
             var table = document.getElementById('data-table');
 
             if (!table.rows[0]){
@@ -84,6 +96,8 @@
 
     <div class="container">
         <h1>Swing trade strategy</h1>
+        <p>Buy Date: <span id="buy_date"> {{buy_date}}</span> </p>
+        <p>Sell Date: <span id ="sell_date">{{ sell_date }}</span></p>
     </div>
 
 </body>
