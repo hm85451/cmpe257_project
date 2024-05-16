@@ -10,34 +10,44 @@
       function do_submit() {
         var req = new XMLHttpRequest();
         var result = document.getElementById('result');
+
         req.onreadystatechange = function()
         {
           if(this.readyState == 4 && this.status == 200) {
             var pred_list = JSON.parse(req.responseText);
-
             var table = document.getElementById('data-table');
 
+            if (!table.rows[0]){
+              var header_row = table.createTHead().insertRow();
+              header = ['Open', 'High', 'Low', 'Close', 'Volume']
+              header.forEach(function(element) {
+                var headerCell = document.createElement('th');
+                headerCell.textContent = element;
+                headerCell.classList.add('data-table-th');
+                header_row.appendChild(headerCell)
+              });
+            }
+
+
             pred_list.forEach(function(pred, index) {
-              var newRow = table.insertRow();
+              var row
+              if (table.rows[index+1])
+                row = table.rows[index+1];
+              else
+                row = table.insertRow();
 
               pred.forEach(function(entry, index) {
-                  var newCell = newRow.insertCell();
-                  newCell.classList.add('data-table-th');
-                  newCell.textContent = entry;
+                  var cell
+                  if (row.cells[index])
+                    cell = row.cells[index];
+                  else{
+                    cell = row.insertCell();
+                    cell.classList.add('data-table-th');
+                  }
+                  cell.textContent = entry;
               });
               console.log(pred);
             });
-
-            //res = res.replace(/\.0\]/g, "]");
-            //var dataArray = JSON.parse(res);
-            //dataArray = dataArray[0]
-            //var outputRow = document.getElementById('output-row');
-
-            //dataArray.forEach(function(item, index) {
-
-              //outputRow.cells[index].textContent = item
-
-            //});
 
             result.innerHTML = "";
           } else {
@@ -66,13 +76,6 @@
         <div id="result"></div>
         <table id="data-table" class="data-table">
         <thead>
-            <tr>
-                <th class="data-table-th">Open</th>
-                <th class="data-table-th">High</th>
-                <th class="data-table-th">Low</th>
-                <th class="data-table-th">Close</th>
-                <th class="data-table-th">Volume</th>
-            </tr>
         </thead>
         <tbody id="data-body">
         </tbody>
