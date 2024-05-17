@@ -71,7 +71,7 @@ model.compile(optimizer='adam', loss='mean_squared_error')
 import tensorflow as tf
 with tf.device('/device:GPU:0'):
   # Train the model
-  model.fit(X_train, y_train, epochs=5, batch_size=32)
+  model.fit(X_train, y_train, epochs=100, batch_size=32)
 
 test_data = scaled_data[training_size-120:]
 X_test, y_test = create_sequences(test_data, seq_length)
@@ -104,24 +104,24 @@ pred = scaler.inverse_transform(pred)
 # plt.legend()
 # plt.show()
 
-def InputValue(x,pred):
-  x_f = np.delete(x, (0), axis=0)
-  x_f = np.vstack([x_f,pred])
-  return x_f
+# def InputValue(x,pred):
+#   x_f = np.delete(x, (0), axis=0)
+#   x_f = np.vstack([x_f,pred])
+#   return x_f
 
-x_feature = InputValue(X_test[94],predictions[94])
+# x_feature = InputValue(X_test[94],predictions[94])
 
-x_feature.shape
+# x_feature.shape
 
-pred = predictions[94]
-N=10
-N_predictions=[]
-N_predictions.append(np.array(pred).reshape(len(features)))
-for _ in range(N):
-  pred = model.predict(x_feature.reshape((1,seq_length,len(features))))
-  pred = scaler.inverse_transform(pred)
-  N_predictions.append(np.array(pred).reshape(len(features)))
-  x_feature = InputValue(x_feature,pred)
+# pred = predictions[94]
+# N=10
+# N_predictions=[]
+# N_predictions.append(np.array(pred).reshape(len(features)))
+# for _ in range(N):
+#   pred = model.predict(x_feature.reshape((1,seq_length,len(features))))
+#   pred = scaler.inverse_transform(pred)
+#   N_predictions.append(np.array(pred).reshape(len(features)))
+#   x_feature = InputValue(x_feature,pred)
 
 # N_predictions
 
@@ -138,6 +138,6 @@ for _ in range(N):
 # plt.legend()
 # plt.show()
 
-model.save('../btc_usd_lstm.keras')
+model.save('btc_usd_lstm.keras')
 
-model.save('../btc_usd_lstm.h5')
+model.save('btc_usd_lstm.h5')
