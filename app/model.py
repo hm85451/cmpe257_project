@@ -34,17 +34,16 @@ def predict(date_count):
     x = input_sequence[ind]
     for _ in range(N):
         pred = model.predict(x.reshape((1,seq_length,len(features))))
-        x = InputValue(x,pred)
+        ind+=1
+        x = input_sequence[ind]
         pred = scaler.inverse_transform(pred)
         N_predictions.append(np.array(pred).reshape(len(features)).tolist())
     
     return N_predictions
 
 
-
-
 # # Load the dataset
-# data = pd.read_csv('data/BTC-USD.csv')
+# data = pd.read_csv('data/BTC-USD2.csv')
 
 # # Select relevant features
 # features = ['Open', 'High', 'Low', 'Close','Volume']

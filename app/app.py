@@ -15,7 +15,7 @@ def index():
        if request.method == "POST":
               date = request.form["date"]
               nth_day_from_start = convert_date_to_n(date)
-              pred_list = predict(nth_day_from_start+1)#+1 because input is the next day after selected day
+              pred_list = predict(nth_day_from_start)
               pred_list = [[round(num, 2) for num in row] for row in pred_list]
               
               open_average = sum([row[0] for row in pred_list])/len(pred_list)
