@@ -20,11 +20,11 @@
             var sell_date = list['sell_date'];
             var highest = list['highest'];
             var lowest = list['lowest'];
-            var open_average = list['open_average'];
+            var open_average = list['close_average'];
 
             document.getElementById('highest').innerText = highest;
             document.getElementById('lowest').innerText = lowest;
-            document.getElementById('open_average').innerText = open_average;
+            document.getElementById('close_average').innerText = close_average;
 
 
             document.getElementById('buy_date').innerText = buy_date;
@@ -102,7 +102,7 @@
     </table>
     <p>highest in the next 7 days: <span id="highest"> {{highest}}</span> </p>
     <p>lowest in the next 7 days: <span id="lowest"> {{lowest}}</span> </p>
-    <p>average open of the next 7 days: : <span id="open_average"> {{open_average}}</span> </p>
+    <p>average close of the next 7 days: : <span id="close_average"> {{close_average}}</span> </p>
     </div>
 
     <div class="container">

@@ -18,8 +18,8 @@ def index():
               pred_list = predict(nth_day_from_start)
               pred_list = [[round(num, 2) for num in row] for row in pred_list]
               
-              open_average = sum([row[0] for row in pred_list])/len(pred_list)
-              open_average = round(open_average, 2)
+              close_average = sum([row[3] for row in pred_list])/len(pred_list)
+              close_average = round(close_average, 2)
               high_seven_days = [row[1] for row in pred_list]
               low_seven_days = [row[2] for row in pred_list]
               highest = max(high_seven_days)
@@ -45,7 +45,7 @@ def index():
               print("Buy date: ", buy_date, flush=True)
               print("Sell date: ", sell_date, flush=True)
               
-              return jsonify(highest=highest, lowest=lowest, open_average=open_average, pred_list=pred_list, buy_date=buy_date, sell_date=sell_date)
+              return jsonify(highest=highest, lowest=lowest, close_average=close_average, pred_list=pred_list, buy_date=buy_date, sell_date=sell_date)
        return render_template('index.html')
 
 
