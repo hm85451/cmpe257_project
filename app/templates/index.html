@@ -18,6 +18,14 @@
             var pred_list = list['pred_list'];
             var buy_date = list['buy_date'];
             var sell_date = list['sell_date'];
+            var highest = list['highest'];
+            var lowest = list['lowest'];
+            var open_average = list['open_average'];
+
+            document.getElementById('highest').innerText = highest;
+            document.getElementById('lowest').innerText = lowest;
+            document.getElementById('open_average').innerText = open_average;
+
 
             document.getElementById('buy_date').innerText = buy_date;
             document.getElementById('sell_date').innerText = sell_date;
@@ -92,6 +100,9 @@
         <tbody id="data-body">
         </tbody>
     </table>
+    <p>highest in the next 7 days: <span id="highest"> {{highest}}</span> </p>
+    <p>lowest in the next 7 days: <span id="lowest"> {{lowest}}</span> </p>
+    <p>average open of the next 7 days: : <span id="open_average"> {{open_average}}</span> </p>
     </div>
 
     <div class="container">

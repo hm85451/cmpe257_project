@@ -34,9 +34,9 @@ def predict(date_count):
     x = input_sequence[ind]
     for _ in range(N):
         pred = model.predict(x.reshape((1,seq_length,len(features))))
+        x = InputValue(x,pred)
         pred = scaler.inverse_transform(pred)
         N_predictions.append(np.array(pred).reshape(len(features)).tolist())
-        x = InputValue(x,pred)
     
     return N_predictions
 
